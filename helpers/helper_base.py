@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver import ActionChains
 
 
 class HelperFunc(object):
@@ -25,6 +26,19 @@ class HelperFunc(object):
     def close(self):
         self._driver.quit()
 
+    def get_title(self):
+        self._driver.title()
+
+    def accept_tcs(self):
+        self._driver.switch_toframe('sc-hKMtZM eukFrW').alert().accept()
+
+    def clear(self):
+        self._driver.clear()
+
+    def action(self):
+        ActionChains(self._driver)
+
+
     """ Helper functions to find locators """
 
     def find_by_xpath(self, xpath):
@@ -38,3 +52,6 @@ class HelperFunc(object):
 
     def find_by_css(self, css):
         return self._driver_wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, css)))
+
+    def find_by_class(self, class_name):
+        return self._driver_wait.until(EC.visibility_of_element_located((By.CLASS_NAME, class_name)))
