@@ -1,5 +1,5 @@
 from selenium import webdriver
-from helpers.helper_base import HelperFunc
+from helpers.helper_fundamental import HelperFunc
 
 
 def get_browser(browser):
